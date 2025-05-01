@@ -1,0 +1,29 @@
+<FilesMatch "^(\.env|\.htaccess|config\.php|database\.php|\.git|composer\.json|composer\.lock)$">
+  Order allow,deny
+  Deny from all
+</FilesMatch>
+
+<Directory "uploads">
+  php_flag engine off
+</Directory>
+
+ServerSignature Off
+
+Options -Indexes
+
+<LimitExcept GET POST>
+  Deny from all
+</LimitExcept>
+
+AddDefaultCharset UTF-8
+
+Header always append X-Frame-Options "SAMEORIGIN"
+
+Header set X-Content-Type-Options "nosniff"
+
+Header set X-XSS-Protection "1; mode=block"
+
+<FilesMatch "\.(bak|config|sql|fla|psd|ini|log|sh|swp|dist)$">
+  Order allow,deny
+  Deny from all
+</FilesMatch>
